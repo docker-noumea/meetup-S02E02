@@ -28,8 +28,8 @@ cloud_db:
   environment:
     MYSQL_DATABASE: owncloud
     MYSQL_USER: owncloud
-    MYSQL_PASSWORD: password
-    MYSQL_ROOT_PASSWORD: r00tpassword
+    MYSQL_PASSWORD: ezie7ohghes6oon7thii9ohbuiYaimie
+    MYSQL_ROOT_PASSWORD: iechoo1thohcaiTee2lom9Ahsho4cu0p
   volumes:
     - ./mysql:/var/lib/mysql
 cloud_cache:
