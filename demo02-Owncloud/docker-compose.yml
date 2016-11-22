@@ -8,8 +8,8 @@ cloud_web:
   links:
     - cloud_engine
   volumes:
-    - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    - ./var/log/nginx:/var/log/nginx
+    - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./logs:/var/log/nginx
     - /etc/letsencrypt:/etc/letsencrypt:z
 cloud_engine:
   image: owncloud:latest  
