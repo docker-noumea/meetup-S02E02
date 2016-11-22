@@ -1,0 +1,38 @@
+cloud_web:
+  image: nginx
+  restart: always
+  ports:
+    - 80:80
+    - 443:443
+  log_driver: syslog
+  link:
+    - cloud_engine
+  volumes:
+    - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    - ./var/log/nginx:/var/log/nginx
+    - /etc/letsencrypt:/etc/letsencrypt:z
+cloud_engine:
+  image: owncloud:latest  
+  expose:
+    - "80"
+  volumes:
+    - ./data:/var/www/html/data
+    - ./config:/var/www/html/config
+  links:
+    - cloud_db
+    - cloud_cache
+cloud_db:
+  image: mysql:latest
+  expose:
+    - "3306"
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_USER: owncloud
+    MYSQL_PASSWORD: password
+    MYSQL_ROOT_PASSWORD: r00tpassword
+  volumes:
+    - ./mysql:/var/lib/mysql
+cloud_cache:
+  image: redis:latest
+  expose:
+    - "6379"
